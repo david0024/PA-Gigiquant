@@ -25,7 +25,9 @@ void AdaugareValori(IND **head, double valoare)
         while(aux->next != NULL)
             aux = aux->next;
 
+        ///Valoarea randamentului este calculata direct din umplerea listei cu valori
         newnode->randament = (newnode->valoare - aux->valoare) / aux->valoare;
+
         aux->next = newnode;
     }
 }
@@ -54,4 +56,11 @@ double Volatilitate(IND *head, int n)
     suma /= n;
     suma = (double)(sqrt(suma));
     return suma;
+}
+
+double SharpeRatio(IND *head, int n)
+{
+    double SR;
+    SR = RandamentMediu(head, n) / Volatilitate(head, n);
+    return SR;
 }

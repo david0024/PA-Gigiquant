@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
             AdaugareValori(&head, valoare);
         }
     fprintf(out, "%0.3lf\n", RandamentMediu(head, n));
-    fprintf(out, "%0.3lf\n", Volatilitate(head, n));    
+    fprintf(out, "%0.3lf\n", Volatilitate(head, n));   
+    fprintf(out, "%0.3lf\n", SharpeRatio(head, n)); 
     return 0;
 }
