@@ -34,23 +34,30 @@ void AdaugareValori(IND **head, double valoare)
     }
 }
 
+double Trunchiere(double x)
+{
+    return floor(1000 * x) / 1000;
+}
+
 double RandamentMediu(IND *head, int n)
 {
     double randament_med = 0.0;
-    for (int i = 0; i < n; i ++)
+    head = head->next;
+    for (int i = 0; i < n - 1; i ++)
     {
         randament_med += head->randament;
         head = head->next;
     }
     
-    return (randament_med/(double)n);
+    return randament_med/(double)(n - 1);
 }
 
 double Volatilitate(IND *head, int n)
 {
     double suma = 0.0;
     double miu = RandamentMediu(head, n);
-    for(int i = 0; i < n; i ++)
+    head = head->next;
+    for(int i = 0; i < n - 1; i ++)
     {
         suma += (head->randament - miu) * (head->randament - miu);
         head = head->next;
@@ -66,3 +73,4 @@ double SharpeRatio(IND *head, int n)
     SR = RandamentMediu(head, n) / Volatilitate(head, n);
     return SR;
 }
+

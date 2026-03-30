@@ -13,3 +13,4 @@ void AdaugareValori(IND **head, double valoare);
 double RandamentMediu(IND *head, int n);
 double Volatilitate(IND *head, int n);
 double SharpeRatio(IND *head, int n);
+double Trunchiere(double x);
