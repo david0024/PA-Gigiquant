@@ -6,12 +6,14 @@ void AdaugareValori(IND **head, double valoare)
 
     newnode->valoare = valoare;
     newnode->next = NULL;
+    ///Verificare daca spatiul de memorie a fost alocat corect
     if(newnode == NULL)
     {
         perror("Eroare la alocarea de memorie");
         exit(1);
     }
 
+    ///Daca lista este vida newnode va fi primul element
     if(*head == NULL)
     {
         newnode->randament = 0.0;
@@ -19,7 +21,7 @@ void AdaugareValori(IND **head, double valoare)
         
     }
     else {
-        
+        ///In caz contrar, elementul va fi adaugat la finalul listei
         IND *aux = *head;
         
         while(aux->next != NULL)
@@ -41,7 +43,7 @@ double RandamentMediu(IND *head, int n)
         head = head->next;
     }
     
-    return (randament_med/(1.0*n));
+    return (randament_med/(double)n);
 }
 
 double Volatilitate(IND *head, int n)
@@ -53,7 +55,7 @@ double Volatilitate(IND *head, int n)
         suma += (head->randament - miu) * (head->randament - miu);
         head = head->next;
     }
-    suma /= n;
+    suma /= (n - 1);
     suma = (double)(sqrt(suma));
     return suma;
 }
