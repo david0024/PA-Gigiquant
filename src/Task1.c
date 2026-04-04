@@ -3,16 +3,16 @@
 void AdaugareValori(IND **head, double valoare)
 {
     IND *newnode = (IND*)malloc(sizeof(IND));
-
-    newnode->valoare = valoare;
-    newnode->next = NULL;
-    ///Verificare daca spatiul de memorie a fost alocat corect
+     ///Verificare daca spatiul de memorie a fost alocat corect
     if(newnode == NULL)
     {
         perror("Eroare la alocarea de memorie");
         exit(1);
     }
 
+    newnode->valoare = valoare;
+    newnode->next = NULL;
+   
     ///Daca lista este vida newnode va fi primul element
     if(*head == NULL)
     {

@@ -1,6 +1,6 @@
 #include "gigiquant.h"
 
-int main(int argc, char *argv[])
+int main(int argc, const *argv[])
 {
     FILE *in, *out; /// Fisiere pentru intrare si iesire
     in = fopen(argv[1], "r");
