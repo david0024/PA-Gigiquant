@@ -33,5 +33,7 @@ int main(int argc, char *argv[])
     fprintf(out, "%0.3lf\n", Trunchiere(RandamentMediu(head, n)));
     fprintf(out, "%0.3lf\n", Trunchiere(Volatilitate(head, n)));   
     fprintf(out, "%0.3lf\n", Trunchiere(SharpeRatio(head, n))); 
+
+    EliberareSpatiu(head);
     return 0;
 }

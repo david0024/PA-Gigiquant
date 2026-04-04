@@ -80,3 +80,13 @@ double SharpeRatio(IND *head, int n)
     SR = RandamentMediu(head, n) / Volatilitate(head, n);
     return SR;
 }
+
+void EliberareSpatiu(IND *head)
+{
+    while(head != NULL)
+    {
+        IND* aux = head->next;
+        free(head);
+        head = aux;
+    }
+}
