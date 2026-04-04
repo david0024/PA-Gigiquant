@@ -38,7 +38,7 @@ void AdaugareValori(IND **head, double valoare)
 double Trunchiere(double x) /// Trunchierea se face la final, in afisare, pentru a afisa valorile exacte
 {
     /// Returneaza valoarea cu exact 3 zecimale
-    return floor(1000 * x) / 1000;
+    return trunc(1000 * x) / 1000;
 }
 
 double RandamentMediu(IND *head, int n)

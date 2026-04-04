@@ -22,8 +22,10 @@ int main(int argc, char *argv[])
     int n;
     double valoare;
 
-    fscanf(in, "%d", &n);
-
+    if(fscanf(in, "%d", &n) != 1)
+       { 
+            exit(1);
+       }
     for(int i = 0; i < n; i ++)
         {
             fscanf(in, "%lf", &valoare);
