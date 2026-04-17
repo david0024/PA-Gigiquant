@@ -91,11 +91,39 @@ void EliberareSpatiu(IND *head)
     }
 }
 
+int Citire1(FILE *in, IND **head)
+{
+    int n;
+    double valoare;
+
+    if(fscanf(in, "%d", &n) != 1)
+       { 
+            exit(1);
+       }
+    for(int i = 0; i < n; i ++)
+        {
+            fscanf(in, "%lf", &valoare);
+            AdaugareValori(head, valoare);
+        }
+    return n;
+}
+void Task1(FILE *in, FILE *out)
+{
+    
+    IND *head = NULL;
+    int n = Citire1(in, &head);
+    ///Functia de trunchiere este folosita acum, in timpul afisarii; Daca era folosita inainte, ar fi fost afisat 0;
+    fprintf(out, "%0.3lf\n", Trunchiere(RandamentMediu(head, n)));
+    fprintf(out, "%0.3lf\n", Trunchiere(Volatilitate(head, n)));   
+    fprintf(out, "%0.3lf\n", Trunchiere(SharpeRatio(head, n))); 
+
+    EliberareSpatiu(head);
+}
 /*Task 2*/
 
-void pop(SN **top) /// Folosita pentru a folosi valorile din cele 3 stive
+double pop(SN **top) /// Folosita pentru a folosi valorile din cele 3 stive
 {
-    if(top == NULL)
+    if(*top == NULL)
         return -1;
     SN *temp = *top;
 
@@ -128,4 +156,6 @@ void EnQueue(Q *q, int zi, double diferenta, char *numeOras)
     }
     
 }
+int Citire2(FILE *in, SN **s1, SN **s2, SN **s3){
 
+}

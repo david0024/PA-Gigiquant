@@ -17,25 +17,6 @@ int main(int argc, const *argv[])
         exit(1);
     }
 
-
-    IND *head = NULL;
-    int n;
-    double valoare;
-
-    if(fscanf(in, "%d", &n) != 1)
-       { 
-            exit(1);
-       }
-    for(int i = 0; i < n; i ++)
-        {
-            fscanf(in, "%lf", &valoare);
-            AdaugareValori(&head, valoare);
-        }
-    ///Functia de trunchiere este folosita acum, in timpul afisarii; Daca era folosita inainte, ar fi fost afisat 0;
-    fprintf(out, "%0.3lf\n", Trunchiere(RandamentMediu(head, n)));
-    fprintf(out, "%0.3lf\n", Trunchiere(Volatilitate(head, n)));   
-    fprintf(out, "%0.3lf\n", Trunchiere(SharpeRatio(head, n))); 
-
-    EliberareSpatiu(head);
+    Task1(in, out);
     return 0;
 }
