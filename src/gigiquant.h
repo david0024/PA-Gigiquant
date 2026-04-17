@@ -1,13 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>  
 #include <math.h> 
-struct Node {
+typedef struct Node {
     double valoare;
     double randament;
     struct Node* next;
 
-};
-typedef struct Node IND;
+}IND;
+
+typedef struct StackNode{
+    double pret;
+    struct StackNode *next;
+}SN;
+
+typedef struct Oportunitate{
+    int zi;
+    double diferenta;
+    char numeOras[30];
+    struct Oportunitate *next;
+       
+}OP;
+
+typedef struct Queue{
+    OP *front, *rear;
+}Q;
 
 void AdaugareValori(IND **head, double valoare);
 double RandamentMediu(IND *head, int n);

@@ -1,5 +1,5 @@
 #include "gigiquant.h"
-
+/*Task 1*/
 void AdaugareValori(IND **head, double valoare)
 {
     IND *newnode = (IND*)malloc(sizeof(IND));
@@ -90,3 +90,42 @@ void EliberareSpatiu(IND *head)
         head = aux;
     }
 }
+
+/*Task 2*/
+
+void pop(SN **top) /// Folosita pentru a folosi valorile din cele 3 stive
+{
+    if(top == NULL)
+        return -1;
+    SN *temp = *top;
+
+    double valoare = temp->pret;
+
+    *top = (*top)->next;
+    free(temp);
+    return valoare;
+}
+
+void EnQueue(Q *q, int zi, double diferenta, char *numeOras)
+{
+    OP *newOP = (OP*)malloc(sizeof(OP));
+    if(newOP == NULL)
+    {
+        perror("Eroare");
+        return; 
+    }
+
+    newOP->zi = zi;
+    newOP->diferenta = diferenta;
+    strcpy(newOP->numeOras, numeOras);
+    newOP->next = NULL;
+
+    if(q->rear == NULL) q->rear = newOP;
+    else 
+    {
+        (q->rear)->next = newOP;
+        q->rear = newOP;
+    }
+    
+}
+
