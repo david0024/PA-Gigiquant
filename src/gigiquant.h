@@ -33,3 +33,4 @@ double Trunchiere(double x);
 void EliberareSpatiu(IND *head);
 int Citire1(FILE* in, IND **head);
 void Task1(FILE *in, FILE *out);
+int Citire2(FILE *in, SN **s1, SN **s2, SN **s3);
