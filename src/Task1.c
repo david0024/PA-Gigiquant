@@ -1,4 +1,20 @@
 #include "gigiquant.h"
+
+int ValoareTask(char *file)
+{
+    int ValTask = 0, i = 0;
+    while(file[i] != '\0')
+    {
+        if(file[i] >= '0' && file[i] <= '9')
+        {
+            ValTask = ValTask * 10 + (file[i] - '0');
+        }
+    
+        i++;
+    }
+    return ValTask;
+}
+
 /*Task 1*/
 void AdaugareValori(IND **head, double valoare)
 {
@@ -162,14 +178,14 @@ void push(SN **top, double valoare)
     newNode->next = *top;
     *top = newNode;
 }
-int Citire2(FILE *in, SN **s1, SN **s2, SN **s3)
+int Citire2(FILE *in, SN **s1, SN **s2, SN **s3, char *oras1, char *oras2, char *oras3)
 {
-    char oras1[50], oras2[50], oras3[50];
+    
     double valoare;
     int n1 = 0, n2 = 0, n3 = 0;
 
     /// Citire nume si valori oras 1
-    if (fscanf(in, "%s", oras1) != 1)
+    if (fscanf(in, "%[^\n]", oras1) != 1)
         exit(1);
 
     while (fscanf(in, "%lf", &valoare) == 1)
@@ -179,7 +195,7 @@ int Citire2(FILE *in, SN **s1, SN **s2, SN **s3)
     }
 
     /// Citire nume si valori oras 2
-    if (fscanf(in, "%s", oras2) != 1)
+    if (fscanf(in, "%[^\n]", oras2) != 1)
         exit(1);
 
     while (fscanf(in, "%lf", &valoare) == 1)
@@ -190,7 +206,7 @@ int Citire2(FILE *in, SN **s1, SN **s2, SN **s3)
 
     /// Citire nume si valori oras 3
 
-    if (fscanf(in, "%s", oras3) != 1)
+    if (fscanf(in, "%[^\n]", oras3) != 1)
         exit(1);
 
     while (fscanf(in, "%lf", &valoare) == 1)
@@ -207,7 +223,7 @@ int Citire2(FILE *in, SN **s1, SN **s2, SN **s3)
     return nr_zile;
 }
 
-void Task2(SN **s1, SN **s2, SN **s3, Q *q, char *oras1, char *oras2, char *oras3, int nr_zile)
+void Arbitraj(SN **s1, SN **s2, SN **s3, Q *q, char *oras1, char *oras2, char *oras3, int nr_zile)
 {
     for(int i = 1; i <= nr_zile; i++)
     {
@@ -238,4 +254,52 @@ void Afisare(Q *q, FILE *out)
         fprintf(out, "ziua %d - %.2lf - %s\n", current->zi, current->diferenta, current->numeOras);
         current = current->next;
     }
+}
+
+void EliberareSpatiu2(SN **s1, SN **s2, SN **s3, Q *q)
+{
+    // Eliberare stive
+    while (*s1 != NULL)
+    {
+        SN *temp = *s1;
+        *s1 = (*s1)->next;
+        free(temp);
+    }
+
+    while (*s2 != NULL)
+    {
+        SN *temp = *s2;
+        *s2 = (*s2)->next;
+        free(temp);
+    }
+
+    while (*s3 != NULL)
+    {
+        SN *temp = *s3;
+        *s3 = (*s3)->next;
+        free(temp);
+    }
+
+    // Eliberare coada
+    while (q->front != NULL)
+    {
+        OP *temp = q->front;
+        q->front = q->front->next;
+        free(temp);
+    }
+    q->rear = NULL;
+}
+
+void Task2(FILE *in, FILE *out)
+{
+    SN *s1 = NULL, *s2 = NULL, *s3 = NULL;
+    char oras1[50], oras2[50], oras3[50];
+    Q q;
+    q.front = q.rear = NULL;   
+
+    int nr_zile = Citire2(in, &s1, &s2, &s3, oras1, oras2, oras3);
+   
+    Arbitraj(&s1, &s2, &s3, &q, oras1, oras2, oras3, nr_zile);
+    Afisare(&q, out);
+    EliberareSpatiu2(&s1, &s2, &s3, &q);
 }

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>  
 #include <math.h> 
+#include <string.h>
 typedef struct Node {
     double valoare;
     double randament;
@@ -33,9 +34,12 @@ double Trunchiere(double x);
 void EliberareSpatiu(IND *head);
 int Citire1(FILE* in, IND **head);
 void Task1(FILE *in, FILE *out);
-int Citire2(FILE *in, SN **s1, SN **s2, SN **s3);
-void Task2(SN **s1, SN **s2, SN **s3, Q *q, char *oras1, char *oras2, char *oras3, int nr_zile);
-void Afisare(Q *q, FILE *out);
+int Citire2(FILE *in, SN **s1, SN **s2, SN **s3, char *oras1, char *oras2, char *oras3);
+void Arbitraj(SN **s1, SN **s2, SN **s3, Q *q, char *oras1, char *oras2, char *oras3, int nr_zile);
 void push(SN **top, double valoare);
 double pop(SN **top);
 void EnQueue(Q *q, int zi, double diferenta, char *numeOras);
+int ValoareTask(char *file);
+void Task2(FILE *in, FILE *out);
+void Afisare(Q *q, FILE *out);
+void EliberareSpatiu2(SN **s1, SN **s2, SN **s3, Q *q);
