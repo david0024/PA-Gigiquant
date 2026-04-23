@@ -34,3 +34,8 @@ void EliberareSpatiu(IND *head);
 int Citire1(FILE* in, IND **head);
 void Task1(FILE *in, FILE *out);
 int Citire2(FILE *in, SN **s1, SN **s2, SN **s3);
+void Task2(SN **s1, SN **s2, SN **s3, Q *q, char *oras1, char *oras2, char *oras3, int nr_zile);
+void Afisare(Q *q, FILE *out);
+void push(SN **top, double valoare);
+double pop(SN **top);
+void EnQueue(Q *q, int zi, double diferenta, char *numeOras);

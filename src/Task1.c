@@ -206,3 +206,36 @@ int Citire2(FILE *in, SN **s1, SN **s2, SN **s3)
         nr_zile = n3;
     return nr_zile;
 }
+
+void Task2(SN **s1, SN **s2, SN **s3, Q *q, char *oras1, char *oras2, char *oras3, int nr_zile)
+{
+    for(int i = 1; i <= nr_zile; i++)
+    {
+        double p1 = pop(s1);
+        double p2 = pop(s2);
+        double p3 = pop(s3);
+
+        if(p1 == p2 && p1 != p3)
+        {
+            EnQueue(q, i, fabs(p1 - p3), oras3);
+        }
+        else if(p1 == p3 && p1 != p2)
+        {
+            EnQueue(q, i, fabs(p1 - p2), oras2);
+        }
+        else if(p2 == p3 && p2 != p1)
+        {
+            EnQueue(q, i, fabs(p1 - p3), oras1);
+        }
+    }
+}
+
+void Afisare(Q *q, FILE *out)
+{
+    OP *current = q->front;
+    while (current != NULL)
+    {
+        fprintf(out, "ziua %d - %.2lf - %s\n", current->zi, current->diferenta, current->numeOras);
+        current = current->next;
+    }
+}
